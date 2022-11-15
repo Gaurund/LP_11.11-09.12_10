@@ -8,9 +8,9 @@
 Console.Write("Пожалуйста, введите трёхзначное число: ");
 int number = Convert.ToInt32(Console.ReadLine());
 
-int SecondDigit (int num)
+int SecondDigit(int num)
 {
-    int secondDigit = (num - ((num/100)*100))/10;
+    int secondDigit = num / 10 % 10;
     return secondDigit;
 }
 

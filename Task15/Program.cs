@@ -16,7 +16,7 @@ int InputNumber()
 string Check(int num)
 {
     if (num == 6 || num == 7) return $"{num} -> да";
-    else if (num < 6 && num > 0) return $"{num} -> нет";
+    if (num < 6 && num > 0) return $"{num} -> нет";
     return "Такого дня недели не бывает.";
 }
 

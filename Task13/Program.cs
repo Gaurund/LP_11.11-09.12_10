@@ -15,12 +15,12 @@ int InputNumber()
 int DecreaseToThreeDigits(int num)
 {
     num = Math.Abs(num);
-    for (; num > 1000; num /= 10); 
+    for (; num > 1000; num /= 10) ;
 
     return num;
 }
 
-string Check(int num)
+string SliceTheDigit(int num)
 {
     if (Math.Abs(num) > 99)
     {
@@ -30,8 +30,6 @@ string Check(int num)
     return $"{num} -> третьей цифры нет";
 }
 
-
 int number = InputNumber();
 
-
-Console.WriteLine(Check(number));
+Console.WriteLine(SliceTheDigit(number));

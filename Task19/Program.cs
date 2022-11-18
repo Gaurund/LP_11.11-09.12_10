@@ -5,49 +5,85 @@
 // 12821 -> да
 // 23432 -> да
 
+// Универсальный вариант.
+
 int InputNumber()
 {
-    int num = 0;
-    while (CheckInput(num))
-    {
-        Console.Write("Введите пятизначное число: ");
-        num = Math.Abs(Convert.ToInt32(Console.ReadLine()));
-        if (CheckInput(num)) Console.Write("Это не пятизначное число!\n");
-    };
-
+    Console.Write("Введите целое число: ");
+    int num = Convert.ToInt32(Console.ReadLine());
     return num;
-}
-
-bool CheckInput(int num)
-{
-    return num > 99999 || num < 10000;
 }
 
 int Reverse(int num)
 {
     int numRev = 0;
-    for (int i = 0; num > 0; i++)
+    while (num != 0)
     {
-        int remainder = num % 10;
-        num = num / 10;
-        numRev = numRev * 10 + remainder;
-
+        numRev = numRev * 10 + num % 10;
+        num /= 10;
     }
     return numRev;
 }
 
-bool CheckPalindrome()
+bool CheckPalindrome(int num)
 {
-    int number = InputNumber();
-    int reversed = Reverse(number);
-    return number == reversed;
+    int rev = Reverse(num);
+    return num == rev;
 }
 
 void Output()
 {
-
-    if (CheckPalindrome()) Console.WriteLine($"{number} -> да");
-    else Console.WriteLine($"{number} -> нет");
+    int num = InputNumber();
+    if (CheckPalindrome(num)) Console.WriteLine($"{num} -> да");
+    else Console.WriteLine($"{num} -> нет");
 }
 
 Output();
+
+
+// Вариант с проверкой на пятизначность.
+
+// int InputNumber()
+// {
+//     int num = 0;
+//     while (CheckInput(num))
+//     {
+//         Console.Write("Введите целое пятизначное число: ");
+//         num = Convert.ToInt32(Console.ReadLine());
+//         if (CheckInput(num)) Console.Write("Это не пятизначное число!\n");
+//     };
+
+//     return num;
+// }
+
+// bool CheckInput(int num)
+// {
+//     num = Math.Abs(num);
+//     return num > 99999 || num < 10000;
+// }
+
+// int Reverse(int num)
+// {
+//     int numRev = 0;
+//     while (num != 0)
+//     {
+//         numRev = numRev * 10 + num % 10;
+//         num /= 10;
+//     }
+//     return numRev;
+// }
+
+// bool CheckPalindrome(int num)
+// {
+//     int rev = Reverse(num);
+//     return num == rev;
+// }
+
+// void Output()
+// {
+//     int num = InputNumber();
+//     if (CheckPalindrome(num)) Console.WriteLine($"{num} -> да");
+//     else Console.WriteLine($"{num} -> нет");
+// }
+
+// Output();

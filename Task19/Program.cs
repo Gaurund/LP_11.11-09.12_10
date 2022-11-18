@@ -16,13 +16,13 @@ int InputNumber()
 
 int Reverse(int num)
 {
-    int numRev = 0;
+    int rev = 0;
     while (num != 0)
     {
-        numRev = numRev * 10 + num % 10;
+        rev = rev * 10 + num % 10;
         num /= 10;
     }
-    return numRev;
+    return rev;
 }
 
 bool CheckPalindrome(int num)
@@ -64,13 +64,13 @@ Output();
 
 // int Reverse(int num)
 // {
-//     int numRev = 0;
+//     int rev = 0;
 //     while (num != 0)
 //     {
-//         numRev = numRev * 10 + num % 10;
+//         rev = rev * 10 + num % 10;
 //         num /= 10;
 //     }
-//     return numRev;
+//     return rev;
 // }
 
 // bool CheckPalindrome(int num)

@@ -19,7 +19,7 @@
 // Console.WriteLine(result);
 
 Console.WriteLine("Введите номер четверти: ");
-string quarter = Console.ReadLine();
+string quarter = Console.ReadLine() ?? "";
 
 string Range(string qrtr)
 {

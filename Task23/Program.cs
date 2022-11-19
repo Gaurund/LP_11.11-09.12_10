@@ -29,7 +29,7 @@ int number = InputNumber();
 
 Output(number);
 
-// Масштабируемое решение
+// Решение с произвольной степенью
 
 // int InputNumber(string message)
 // {

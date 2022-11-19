@@ -9,8 +9,13 @@
 
 int InputNumber()
 {
-    Console.Write("Введите целое число: ");
-    int num = Convert.ToInt32(Console.ReadLine());
+    int num = 0;
+    while (num < 10 && num > -10)
+    {
+        Console.Write("Введите целое число: ");
+        num = Convert.ToInt32(Console.ReadLine());
+        if (num < 10 && num > -10) Console.WriteLine("Для палиндрома нужно хотя бы двузначное число.\n");
+    }
     return num;
 }
 

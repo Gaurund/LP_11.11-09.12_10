@@ -13,7 +13,7 @@ int InputNumber(string msg)
 
 bool Check(int pow)
 {
-    return pow > 0;
+    return pow < 1;
 }
 
 int NumberToPower(int num, int pow)
@@ -27,26 +27,20 @@ int NumberToPower(int num, int pow)
     return result;
 }
 
-string Message()
-{
-    int num = InputNumber("Введите целое число: ");
-    int pow = InputNumber("Введите натуральную степень в которую следует возвести: ");
-    if (Check(pow))
-    {
-        int result = NumberToPower(num, pow);
-        return $"{num}, {pow} -> {result}";
-    }
-    else
-    {
-        return "\nСтепень должна быть натуральным числом!";
-    }
-
-}
-
 void Output()
 {
-    string message = Message();
-    Console.WriteLine(message);
+    int pow = -1;
+    int num = InputNumber("Введите целое число: ");
+    while (Check(pow))
+    {
+        pow = InputNumber("Введите степень в которую следует возвести: ");
+        if (Check(pow))
+        {
+            Console.WriteLine("\nСтепень должна быть натуральным числом!\n");
+        }
+    }
+    int result = NumberToPower(num, pow);
+    Console.WriteLine($"{num}, {pow} -> {result}");
 }
 
 Output();

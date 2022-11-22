@@ -23,12 +23,11 @@ int SumDigits(int num)
     return Math.Abs(result);
 }
 
-void Output(int num)
+void Output()
 {
+    int num = InputNumber();
     int sum = SumDigits(num);
     Console.WriteLine($"{num} -> {sum}");
 }
 
-int number = InputNumber();
-
-Output(number);
+Output();

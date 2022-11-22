@@ -24,11 +24,11 @@ int MinusAndPower(int num1, int num2)
     return ((num1 - num2) * (num1 - num2)); 
 }
 
-double Distance(int x_1, int y_1, int z_1, int x_2, int y_2, int z_2)
+double Distance(int xx1, int yy1, int zz1, int xx2, int yy2, int zz2)
 {
-    int xSec = MinusAndPower(x_1, x_2);
-    int ySec = MinusAndPower(y_1, y_2);
-    int zSec = MinusAndPower(z_1, z_2);
+    int xSec = MinusAndPower(xx1, xx2);
+    int ySec = MinusAndPower(yy1, yy2);
+    int zSec = MinusAndPower(zz1, zz2);
     double dist = Math.Sqrt(xSec + ySec + zSec);
     dist = Math.Round(dist, 2, MidpointRounding.ToZero);
     return dist;

@@ -15,8 +15,7 @@ int InputNumber()
 int DecreaseToThreeDigits(int num)
 {
     num = Math.Abs(num);
-    for (; num > 1000; num /= 10) ;
-
+    while ( num > 999) num /= 10;
     return num;
 }
 

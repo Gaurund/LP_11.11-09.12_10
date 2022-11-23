@@ -5,107 +5,22 @@
 
 // Решение по заданию
 
-int[] FillArray(int size)
-{
-    int[] arr = new int[size];
-
-    Random rnd = new Random();
-
-    for (int i = 0; i < size; i++)
-    {
-        arr[i] = rnd.Next(1, 100);
-    }
-    return arr;
-}
-
-string ArrayToString(int[] arr)
-{
-    string result = "Массив из восьми псевдослучайных чисел:\n[ ";
-    for (int i = 0; i < (arr.Length - 1); i++)
-    {
-        result += $"{arr[i]}, ";
-    }
-    result += $"{arr[arr.Length - 1]} ]";
-    return result;
-}
-
-int arraySize = 8;
-int[] array = FillArray(arraySize);
-string output = ArrayToString(array);
-
-Console.WriteLine(output);
-
-
-// Универсальное решение
-
-
-// int InputNumber(string msg)
+// int[] FillArray(int size)
 // {
-//     Console.Write(msg);
-//     return Convert.ToInt32(Console.ReadLine());
-// }
-
-// int[] ArrayParam()
-// {
-//     int[] arrParam = new int[3];
-
-//     while (CheckLess(arrParam[0], 1))
-//     {
-//         arrParam[0] = InputNumber("Введите размер массива: ");
-//         if (CheckEqual(arrParam[0], 0)) Console.WriteLine("\nРазмер массива не может быть равен нулю!\n");
-//         else if (CheckLess(arrParam[0], 0)) Console.WriteLine("\nПожалуйста, введите натуральное число.\n");
-//     }
-
-//     while (CheckEqual(arrParam[1], arrParam[2]))
-//     {
-//         arrParam[1] = InputNumber("Введите минимальное значение для числа в массиве: ");
-//         arrParam[2] = InputNumber("Введите максимальное значение для числа в массиве: ");
-//         if (CheckEqual(arrParam[1], arrParam[2])) Console.WriteLine("\nНижний и верхний пределы равны.\nПовторите ввод.\n");
-//     }
-//     if (CheckLess(arrParam[2], arrParam[1])) CorrectArrayParam(arrParam);
-//     arrParam[2] += 1;
-//     return arrParam;
-// }
-
-// bool CheckLess(int first, int second)
-// {
-//     return first < second;
-// }
-
-// bool CheckEqual(int first, int second)
-// {
-//     return first == second;
-// }
-
-// int[] CorrectArrayParam(int[] arrParam)
-// {
-//     int temp = arrParam[2];
-//     arrParam[2] = arrParam[1];
-//     arrParam[1] = temp;
-//     return arrParam;
-//     // Console.WriteLine("Некорректный ввод исправлен.");
-// }
-
-// int[] FillArray(int[] arrParam)
-// {
-//     int size = arrParam[0];
-//     int low = arrParam[1];
-//     int high = arrParam[2];
-
 //     int[] arr = new int[size];
 
 //     Random rnd = new Random();
 
 //     for (int i = 0; i < size; i++)
 //     {
-//         arr[i] = rnd.Next(low, high);
+//         arr[i] = rnd.Next(1, 100);
 //     }
 //     return arr;
 // }
 
-// string OutputString(int[] arr)
+// string ArrayToString(int[] arr)
 // {
-//     string result = $"\nМассив из {arr.Length} элементов:\n[ ";
+//     string result = "Массив из восьми псевдослучайных чисел:\n[ ";
 //     for (int i = 0; i < (arr.Length - 1); i++)
 //     {
 //         result += $"{arr[i]}, ";
@@ -114,13 +29,98 @@ Console.WriteLine(output);
 //     return result;
 // }
 
-// void Output()
-// {
-//     int[] arrayParam = ArrayParam();
-//     int[] array = FillArray(arrayParam);
-//     string output = OutputString(array);
+// int arraySize = 8;
+// int[] array = FillArray(arraySize);
+// string output = ArrayToString(array);
 
-//     Console.WriteLine(output);
-// }
+// Console.WriteLine(output);
 
-// Output();
+
+// Универсальное решение
+
+int InputNumber(string msg)
+{
+    Console.Write(msg);
+    return Convert.ToInt32(Console.ReadLine());
+}
+
+int[] ArrayParam()
+{
+    int[] arr = new int[3];
+
+    while (arr[0] < 1)
+    {
+        arr[0] = InputNumber("Введите размер массива: ");
+        if (arr[0] == 0) Console.WriteLine("\nРазмер массива не может быть равен нулю!\n");
+        else if (arr[0] < 0) Console.WriteLine("\nПожалуйста, введите натуральное число.\n");
+    }
+
+    while (CheckEqual(arr))
+    {
+        arr[1] = InputNumber("Введите минимальное значение для числа в массиве: ");
+        arr[2] = InputNumber("Введите максимальное значение для числа в массиве: ");
+        if (CheckEqual(arr)) Console.WriteLine("\nНижний и верхний пределы равны.\nПовторите ввод.\n");
+    }
+    if (CheckLess(arr)) SwapParam(arr);
+    arr[2] += 1;
+    return arr;
+}   
+
+bool CheckLess(int[] arr)
+{
+    return arr[1] > arr[2];
+}
+
+bool CheckEqual(int[] arr)
+{
+    return arr[1] == arr[2];
+}
+
+int[] SwapParam(int[] arr)
+{
+    int temp = arr[2];
+    arr[2] = arr[1];
+    arr[1] = temp;
+    Console.WriteLine("\nВы немного напутали, но мы все исправили.");
+    return arr;
+}
+
+int[] FillArray(int[] arrParam)
+{
+    int size = arrParam[0];
+    int low = arrParam[1];
+    int high = arrParam[2];
+
+    int[] arr = new int[size];
+
+    Random rnd = new Random();
+
+    for (int i = 0; i < size; i++)
+    {
+        arr[i] = rnd.Next(low, high);
+    }
+    return arr;
+}
+
+string PrepareOutput(int[] arr)
+{
+    string result = $"\nМассив из {arr.Length} элементов:\n[ ";
+    int stepBack = arr.Length - 1;
+    for (int i = 0; i < stepBack; i++)
+    {
+        result += $"{arr[i]}, ";
+    }
+    result += $"{arr[stepBack]} ]\n";
+    return result;
+}
+
+void Output()
+{
+    int[] arrParam = ArrayParam();
+    int[] arr = FillArray(arrParam);
+    string output = PrepareOutput(arr);
+
+    Console.WriteLine(output);
+}
+
+Output();

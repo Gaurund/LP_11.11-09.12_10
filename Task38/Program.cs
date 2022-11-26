@@ -11,7 +11,7 @@ int InputNumber(string msg)
 
 int[] ArrayParam()
 {
-    int[] arr = new int[3];
+    int[] arr = new int[4];
 
     while (arr[0] < 1)
     {
@@ -28,6 +28,9 @@ int[] ArrayParam()
     }
     if (CheckLess(arr)) SwapParam(arr);
     arr[2] += 1;
+
+    arr[3] = Math.Abs(InputNumber("Введите до какого знака после запятой будут округлятся дроби: "));
+
     return arr;
 }
 
@@ -54,12 +57,13 @@ double[] CreateArrayRndDouble(int[] arrParam)
     int size = arrParam[0];
     int low = arrParam[1];
     int high = arrParam[2];
+    int precision = arrParam[3];
 
     double[] arr = new double[size];
     Random rnd = new Random();
     for (int i = 0; i < arr.Length; i++)
     {
-        arr[i] = Math.Round((rnd.NextDouble() * (high - low) + low), 1);
+        arr[i] = Math.Round((rnd.NextDouble() * (high - low) + low), precision);
     }
     return arr;
 }
@@ -68,25 +72,26 @@ int CountShift(int[] arr)
 {
     int low = arr[1];
     int high = arr[2];
+    int precision = arr[3];
 
     int number = high;
     if (Math.Abs(low) > Math.Abs(high)) number = low;
 
-    int count = 0;
+    int shift = 0;
     while (number != 0)
     {
         number /= 10;
-        count++;
+        shift++;
     }
-    if (low < 0) count += 1;
-    count += 2;
-    return count;
+    if (low < 0) shift += 1;
+    shift += precision + 1;
+    return shift;
 }
 
 void PrintArrayDouble(double[] arr, int[] arrParam)
 {
     int shift = CountShift(arrParam);
-    Console.Write("[");
+    Console.Write("\n[");
     for (int i = 0; i < arr.Length; i++)
     {
         Console.Write("{0," + $"{shift}" + "}", arr[i]);
@@ -109,12 +114,13 @@ double[] SearchMinMax(double[] arr)
     return arrMinMax;
 }
 
-double MaxMinusMin(double[] arr)
+double MaxMinusMin(double[] arr, int[] arrParam)
 {
     double min = arr[0];
     double max = arr[1];
+    int precision = arrParam[3];
 
-    double result = Math.Round((max - min), 1);
+    double result = Math.Round((max - min), precision);
     return result;
 }
 
@@ -122,5 +128,5 @@ int[] arrayParam = ArrayParam();
 double[] array = CreateArrayRndDouble(arrayParam);
 PrintArrayDouble(array, arrayParam);
 double[] arrayMinMax = SearchMinMax(array);
-double maxMinusMin = MaxMinusMin(arrayMinMax);
+double maxMinusMin = MaxMinusMin(arrayMinMax, arrayParam);
 Console.WriteLine($"Разность между максимальным и минимальным элементами массива = {maxMinusMin}");

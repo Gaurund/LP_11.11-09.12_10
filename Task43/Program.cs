@@ -12,7 +12,7 @@ int InputNumber(string msg)
     return num;
 }
 
-(int B1, int K1, int B2, int K2) GetNumbers()
+(int , int , int , int ) GetNumbers()
 {
     int b1 = InputNumber("Введите число b1: ");
     int k1 = InputNumber("Введите число k1: ");
@@ -53,6 +53,6 @@ void Output((int b1, int k1, int b2, int k2) num)
     }
 }
 
-(int numB1, int numK1, int numB2, int numK2) numbers = GetNumbers();
+(int , int , int , int ) numbers = GetNumbers();
 
 Output(numbers);

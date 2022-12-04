@@ -50,7 +50,7 @@
 // int count = CountPositiveNumbers(array);
 // Output(array, count);
 
-// Вариант ввода чисел одной строкой через пробел.
+// Вариант ввода чисел одной строкой через запятую.
 
 string InputString(string msg)
 {
@@ -61,7 +61,7 @@ string InputString(string msg)
 
 int[] ExplodeStringToIntegers(string str)
 {
-    string[] strArr = str.Split();
+    string[] strArr = str.Split(",");
     int[] arr = new int[strArr.Length];
     for (int i = 0; i < strArr.Length; i++)
     {
@@ -91,7 +91,7 @@ void Output(int[] arr, int num)
     Console.Write($" ] -> {num}\n");
 }
 
-string stringOfNumbers = InputString("Пожалуйста, введите несколько целых чисел через пробел: ");
+string stringOfNumbers = InputString("Пожалуйста, введите несколько целых чисел через запятую: ");
 int[] array = ExplodeStringToIntegers(stringOfNumbers);
 int counter = CountPositiveNumbers(array);
 Output(array, counter);

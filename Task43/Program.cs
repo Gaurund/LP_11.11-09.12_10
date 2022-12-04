@@ -31,14 +31,14 @@ bool CheckEqual(int b1, int k1, int b2, int k2)
     return (k1 == k2 && b1 == b2);
 }
 
-(double X, double Y) GetCoordinates(int intb1, int intk1, int intb2, int intk2)
+(double X, double Y) GetCoordinates(int intB1, int intK1, int intB2, int intK2)
 {
-    double b1 = Convert.ToDouble(intb1);
-    double k1 = Convert.ToDouble(intk1);
-    double b2 = Convert.ToDouble(intb2);
-    double k2 = Convert.ToDouble(intk2);
+    double b1 = Convert.ToDouble(intB1);
+    double k1 = Convert.ToDouble(intK1);
+    double b2 = Convert.ToDouble(intB2);
+    double k2 = Convert.ToDouble(intK2);
     double y = (b2 * k1 - k2 * b1) / (k1 - k2);
-    double x = (y - b1)/k1;
+    double x = (y - b1) / k1;
     return (x, y);
 }
 

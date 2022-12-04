@@ -7,32 +7,77 @@
 
 // Вариант построчного ввода
 
-int InputNumber(string msg)
+// int InputNumber(string msg)
+// {
+//     Console.Write(msg);
+//     int num = Convert.ToInt32(Console.ReadLine());
+//     return num;
+// }
+
+// int[] CreateCustomArray()
+// {
+//     int size = InputNumber("Введите сколько чисел вы планируете ввести: ");
+//     int[] arr = new int[size];
+//     for (int i = 0; i < size; i++)
+//     {
+//         arr[i] = InputNumber($"Введите число №{i + 1}: ");
+//     }
+//     return arr;
+// }
+
+// int CountPositiveNumbers(int[] arr)
+// {
+//     int result = 0;
+//     for (int i = 0; i < arr.Length; i++)
+//     {
+//         if (arr[i] > 0) result++;
+//     }
+//     return result;
+// }
+
+// void Output(int[] arr, int num)
+// {
+//     Console.Write("\n[");
+//     for (int i = 0; i < arr.Length; i++)
+//     {
+//         Console.Write("{0,3}", arr[i]);
+//         Console.Write((i < arr.Length - 1) ? "," : string.Empty);
+//     }
+//     Console.Write($" ] -> {num}\n");
+// }
+
+// int[] array = CreateCustomArray();
+// int count = CountPositiveNumbers(array);
+// Output(array, count);
+
+// Вариант ввода чисел одной строкой через пробел.
+
+string InputString(string msg)
 {
     Console.Write(msg);
-    int num = Convert.ToInt32(Console.ReadLine());
-    return num;
+    string str = Console.ReadLine() ?? "";
+    return str;
 }
 
-int[] CreateCustomArray()
+int[] ExplodeStringToIntegers(string str)
 {
-    int size = InputNumber("Введите сколько чисел вы планируете ввести: ");
-    int[] arr = new int[size];
-    for (int i = 0; i < size; i++)
+    string[] strArr = str.Split();
+    int[] arr = new int[strArr.Length];
+    for (int i = 0; i < strArr.Length; i++)
     {
-        arr[i] = InputNumber($"Введите число №{i + 1}: ");
+         arr[i] = Convert.ToInt32(strArr[i]);
     }
     return arr;
 }
 
 int CountPositiveNumbers(int[] arr)
 {
-    int result = 0;
+    int count = 0;
     for (int i = 0; i < arr.Length; i++)
     {
-        if (arr[i] > 0) result++;
+        if (arr[i] > 0) count++;
     }
-    return result;
+    return count;
 }
 
 void Output(int[] arr, int num)
@@ -46,6 +91,7 @@ void Output(int[] arr, int num)
     Console.Write($" ] -> {num}\n");
 }
 
-int[] array = CreateCustomArray();
-int count = CountPositiveNumbers(array);
-Output(array, count);
+string stringOfNumbers = InputString("Пожалуйста, введите несколько целых чисел через пробел: ");
+int[] array = ExplodeStringToIntegers(stringOfNumbers);
+int counter = CountPositiveNumbers(array);
+Output(array, counter);

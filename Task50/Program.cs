@@ -98,15 +98,15 @@ void PrintMatrix((int rows, int columns, int low, int high) param, int[,] matrix
     Console.WriteLine("\n");
 }
 
-void Output((int row, int col) indxs, int[,] matrix)
+void Output((int row, int col) indexes, int[,] matrix)
 {
-    if (indxs.row >= matrix.GetLength(0) || indxs.col >= matrix.GetLength(1))
+    if (indexes.row >= matrix.GetLength(0) || indexes.col >= matrix.GetLength(1))
     {
-        Console.WriteLine($"\n{indxs.row}, {indxs.col} -> Такого элемента в массиве нет.");
+        Console.WriteLine($"\n{indexes.row}, {indexes.col} -> Такого элемента в массиве нет.");
     }
     else
     {
-        Console.WriteLine($"\n{indxs.row}, {indxs.col} -> {matrix[indxs.row, indxs.col]}");
+        Console.WriteLine($"\n{indexes.row}, {indexes.col} -> {matrix[indexes.row, indexes.col]}");
     }
 }
 

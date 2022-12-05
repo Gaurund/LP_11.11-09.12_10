@@ -72,7 +72,7 @@ int[,] CreateMatrixRndInt((int row, int col, int low, int high, int) param)
     return matrix;
 }
 
-double[] ColumnAverage((int, int, int, int, int precision) param, int[,] matrix)
+double[] ColumnAverage(int precision, int[,] matrix)
 {
     double[] aver = new double[matrix.GetLength(1)];
     for (int j = 0; j < matrix.GetLength(1); j++)
@@ -81,7 +81,7 @@ double[] ColumnAverage((int, int, int, int, int precision) param, int[,] matrix)
         {
             aver[j] += Convert.ToDouble(matrix[i, j]);
         }
-        aver[j] = Math.Round((aver[j] / matrix.GetLength(0)), param.precision);
+        aver[j] = Math.Round((aver[j] / matrix.GetLength(0)), precision);
     }
     return aver;
 }
@@ -120,9 +120,9 @@ void Output(int shift, int[,] matrix, double[] aver)
     Console.WriteLine();
 }
 
-(int, int, int, int, int) arrayParam = MatrixParam();
+(int, int, int, int, int Precision) arrayParam = MatrixParam();
 int[,] array2D = CreateMatrixRndInt(arrayParam);
 int shiftTab = CountShift(arrayParam);
-double[] colAverage = ColumnAverage(arrayParam, array2D);
+double[] colAverage = ColumnAverage(arrayParam.Precision, array2D);
 
 Output(shiftTab, array2D, colAverage);

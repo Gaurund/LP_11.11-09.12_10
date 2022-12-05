@@ -31,7 +31,7 @@ int InputNumber(string msg)
     int precision = -1;
     while (precision < 0)
     {
-        precision = InputNumber("До какой цифры после запятой округляем? ");
+        precision = InputNumber("До какого знака после запятой округляем? ");
         if (precision < 0) ErrorNegativeNumber();
     }
     return (row, col, low, high, precision);
@@ -54,7 +54,7 @@ int CountShift(int low, int high, int precision)
         shift++;
     }
     if (low < 0) shift += 1;
-    shift += precision + 2;
+    shift += precision + 3;
     return shift;
 }
 
@@ -73,7 +73,7 @@ double[,] CreateMatrixRndDouble((int rows, int columns, int low, int high, int p
     return matrix;
 }
 
-void PrintMatrixDouble((int rows, int columns, int low, int high, int precision) param, double[,] matrix)
+void PrintMatrixDouble((int, int, int low, int high, int precision) param, double[,] matrix)
 {
     int shift = CountShift(param.low, param.high, param.precision);
     for (int i = 0; i < matrix.GetLength(0); i++)

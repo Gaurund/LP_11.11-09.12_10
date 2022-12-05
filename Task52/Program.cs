@@ -31,7 +31,7 @@ int InputNumber(string msg)
     int precision = -1;
     while (precision < 0)
     {
-        precision = InputNumber("До какой цифры после запятой округляем? ");
+        precision = InputNumber("До какого знака после запятой округляем? ");
         if (precision < 0) ErrorNegativeNumber();
     }
     return (row, col, low, high, precision);
@@ -58,9 +58,9 @@ int CountShift((int, int, int low, int high, int precision) param)
     return shift;
 }
 
-int[,] CreateMatrixRndInt((int rows, int columns, int low, int high, int) param)
+int[,] CreateMatrixRndInt((int row, int col, int low, int high, int) param)
 {
-    int[,] matrix = new int[param.rows, param.columns];
+    int[,] matrix = new int[param.row, param.col];
     Random rnd = new Random();
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
@@ -98,28 +98,31 @@ void PrintMatrix(int shift, int[,] matrix)
         }
         Console.Write(" ]\n");
     }
-    // Console.WriteLine("\n");
 }
 
-void PrintArrayDouble(int shift, double[] arr)
+void PrintArrayDouble(int shift, double[] aver)
 {
     Console.Write("[");
-    for (int i = 0; i < arr.Length; i++)
+    for (int i = 0; i < aver.Length; i++)
     {
-        Console.Write("{0," + shift + "}", arr[i]);
-        Console.Write((i < arr.Length - 1) ? " |" : string.Empty);
+        Console.Write("{0," + shift + "}", aver[i]);
+        Console.Write((i < aver.Length - 1) ? " |" : string.Empty);
     }
     Console.Write(" ]");
 }
 
+void Output(int shift, int[,] matrix, double[] aver)
+{
+    Console.WriteLine("\nМатрица:");
+    PrintMatrix(shift, matrix);
+    Console.WriteLine("Среднее арифметическое по столбцам:");
+    PrintArrayDouble(shift, aver);
+    Console.WriteLine();
+}
 
 (int, int, int, int, int) arrayParam = MatrixParam();
 int[,] array2D = CreateMatrixRndInt(arrayParam);
 int shiftTab = CountShift(arrayParam);
 double[] colAverage = ColumnAverage(arrayParam, array2D);
 
-Console.WriteLine("\nМатрица:");
-PrintMatrix(shiftTab, array2D);
-Console.WriteLine("Среднее арифметическое по столбцам:");
-PrintArrayDouble(shiftTab, colAverage);
-Console.WriteLine();
+Output(shiftTab, array2D, colAverage);

@@ -66,7 +66,6 @@ void FillArrayUniqueValues(int[,,] arr3D)
             }
         }
     }
-
 }
 
 int[] CreateUniqueArrayRndInt(int[,,] arr3D)

@@ -43,7 +43,7 @@ int[,] CreateCustomEmptyMatrix((int row, int col) param)
 
 int[,] FillMatrixSpiral(int[,] matrix)
 {
-    int count = 1;
+    int count = 0;
 
     int i = 0;
     int j = 0;
@@ -58,8 +58,7 @@ int[,] FillMatrixSpiral(int[,] matrix)
         limitTopRow++;
         while (j < limitRightCol)
         {
-            matrix[i, j] = count++;
-            j++;
+            matrix[i, j++] = ++count;
         }
         limitRightCol--;
         i++;
@@ -67,17 +66,15 @@ int[,] FillMatrixSpiral(int[,] matrix)
 
         while (i < limitBottomRow)
         {
-            matrix[i, j] = count++;
-            i++;
+            matrix[i++, j] = ++count;
         }
         limitBottomRow--;
         i--;
         j--;
 
-        while (j >= limitLeftCol)
+        while (j >= limitLeftCol && count < matrix.Length)
         {
-            matrix[i, j] = count++;
-            j--;
+            matrix[i, j--] = ++count;
         }
         limitLeftCol++;
         j++;
@@ -85,8 +82,7 @@ int[,] FillMatrixSpiral(int[,] matrix)
 
         while (i > limitTopRow)
         {
-            matrix[i, j] = count++;
-            i--;
+            matrix[i--, j] = ++count;
         }
     }
     return matrix;

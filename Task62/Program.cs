@@ -35,7 +35,7 @@ void ErrorNegativeNumber()
     Console.WriteLine("\nЗначение не может быть отрицательным. Повторите ввод.\n");
 }
 
-int[,] CreateSquareMatrix((int row, int col) param)
+int[,] CreateCustomEmptyMatrix((int row, int col) param)
 {
     int[,] matrix = new int[param.row, param.col];
     return matrix;
@@ -108,6 +108,6 @@ void PrintMatrix(int[,] matrix)
 }
 
 (int Rows, int Columns) matrixParam = MatrixParam();
-int[,] array2D = CreateSquareMatrix(matrixParam);
+int[,] array2D = CreateCustomEmptyMatrix(matrixParam);
 FillMatrixSpiral(array2D);
 PrintMatrix(array2D);

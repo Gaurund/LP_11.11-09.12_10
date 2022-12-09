@@ -45,8 +45,8 @@ int[,] FillMatrixSpiral(int[,] matrix)
 {
     int count = 0;
 
-    int i = 0;
-    int j = 0;
+    int row = 0;
+    int col = 0;
 
     int limitBottomRow = matrix.GetLength(0);
     int limitRightCol = matrix.GetLength(1);
@@ -55,47 +55,42 @@ int[,] FillMatrixSpiral(int[,] matrix)
 
     while (count < matrix.Length)
     {
-        limitTopRow++;
-        while (j < limitRightCol)
-        {
-            matrix[i, j++] = ++count;
-        }
-        limitRightCol--;
-        i++;
-        j--;
-
-        while (i < limitBottomRow)
-        {
-            matrix[i++, j] = ++count;
-        }
-        limitBottomRow--;
-        i--;
-        j--;
-
-        while (j >= limitLeftCol && count < matrix.Length)
-        {
-            matrix[i, j--] = ++count;
-        }
-        limitLeftCol++;
-        j++;
-        i--;
-
-        while (i > limitTopRow)
-        {
-            matrix[i--, j] = ++count;
-        }
+        matrix[row, col] = ++count;
+        if (col + 1 < limitRightCol
+            && matrix[row, col + 1] == 0
+            && (row == 0 || matrix[row - 1, col] != 0)) col++;
+        else if (row + 1 < limitBottomRow
+                 && matrix[row + 1, col] == 0) row++;
+        else if (col - 1 >= limitLeftCol
+                 && matrix[row, col - 1] == 0) col--;
+        else if (row - 1 >= limitTopRow
+                 && matrix[row - 1, col] == 0) row--;
     }
     return matrix;
 }
 
+int CountShift(int num)
+{
+    int count = 0;
+    while (num != 0)
+    {
+        num /= 10;
+        count++;
+    }
+    count += 1;
+    return count;
+}
+
 void PrintMatrix(int[,] matrix)
 {
+    int shift = CountShift(matrix.Length);
+    Console.WriteLine(shift);
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         Console.Write($"\n[");
         for (int j = 0; j < matrix.GetLength(1); j++)
         {
-            Console.Write("{0,4}", matrix[i, j]);
+            Console.Write("{0," + shift + "}", matrix[i, j]);
             Console.Write((j < matrix.GetLength(1) - 1) ? "," : string.Empty);
         }
         Console.Write(" ]");

@@ -104,13 +104,13 @@ int[,] MatrixMultiplication(int[,] firstMatrix, int[,] secondMatrix)
     return productMatrix;
 }
 
-void Output(int shift, int firstMatrixColumns, int secondMatrixRows, int[,] firstMatrix, int[,] secondMatrix)
+void Output(int shift, int[,] firstMatrix, int[,] secondMatrix)
 {
-    if (IsMatrixMultiplPossible(firstMatrixColumns, secondMatrixRows))
+    if (IsMatrixMultiplPossible(firstMatrix.GetLength(1), secondMatrix.GetLength(0)))
     {
         int[,] productMatrix = MatrixMultiplication(firstMatrix, secondMatrix);
         Console.WriteLine("Результат умножения матриц:");
-        PrintMatrix(shift, productMatrix); // Надо разобраться с подсчётом сдвига в форматировании.
+        PrintMatrix(shift, productMatrix);
     }
     else
     {
@@ -137,4 +137,4 @@ PrintMatrix(shiftFirst, firstArray2D);
 Console.WriteLine("Вторая матрица");
 PrintMatrix(shiftSecond, secondArray2D);
 
-Output(shiftProduct, firstMatrixParam.Columns, secondMatrixParam.Rows, firstArray2D, secondArray2D);
+Output(shiftProduct, firstArray2D, secondArray2D);

@@ -84,7 +84,6 @@ int CountShift(int num)
 void PrintMatrix(int[,] matrix)
 {
     int shift = CountShift(matrix.Length);
-    Console.WriteLine(shift);
     for (int i = 0; i < matrix.GetLength(0); i++)
     {
         Console.Write($"\n[");

@@ -57,35 +57,68 @@ int[] MatrixToArray(int[,] matrix)
     return arr;
 }
 
+// int[,] StoreValueAndPosition(int[] arr)
+// {
+//     int[,] storeValPos = new int[arr.Length, 2];
+//     int count = 0;
+//     int val = arr[0];
+//     int j = 0;
+//     for (int i = 1; i < arr.Length; i++)
+//     {
+//         count++;
+//         if (arr[i] != val)
+//         {
+//             storeValPos[j, 0] = val;
+//             storeValPos[j++, 1] = count;
+//             count = 0;
+//             val = arr[i];
+//         }
+//     }
+//     storeValPos[j, 0] = arr[arr.Length - 1];
+//     storeValPos[j, 1] = ++count;
+
+//     return storeValPos;
+// }
+
 int[,] StoreValueAndPosition(int[] arr)
 {
-    int[,] storeValPos = new int[arr.Length, 2];
-    int count = 0;
-    int val = arr[0];
+    int size = GetSize(arr);
+    int[,] storeValPos = new int[size, 2];
+    storeValPos[0, 0] = arr[0]; // Store an unique value in the 0 column
+    storeValPos[0, 1] = 1;      // Store a counter of the unique value in the 1 column
     int j = 0;
     for (int i = 1; i < arr.Length; i++)
     {
-        count++;
-        if (arr[i] != val)
+        if (arr[i] != storeValPos[j, 0])
         {
-            storeValPos[j, 0] = val;
-            storeValPos[j++, 1] = count;
-            count = 0;
-            val = arr[i];
+            storeValPos[++j, 0] = arr[i];
         }
+        storeValPos[j, 1]++;
     }
-    storeValPos[j, 0] = arr[arr.Length-1];
-    storeValPos[j, 1] = ++count;
-
     return storeValPos;
 }
 
-void PrintResults(int[,] result)
+int GetSize(int[] arr)
 {
-    for (int i = 0; i < result.GetLength(0); i++)
+    int count = 1;
+    int temp = arr[0];
+    for (int i = 1; i < arr.Length; i++)
     {
-        if (result[i, 1] == 0) return;
-        Console.WriteLine($"{result[i, 0]} встречается {result[i, 1]} раз.");
+        if (arr[i] != temp)
+        {
+            temp = arr[i];
+            count++;
+        }
+    }
+    return count;
+}
+
+void PrintResults(int[,] arrValPos)
+{
+    for (int i = 0; i < arrValPos.GetLength(0); i++)
+    {
+        // if (arrValPos[i, 1] == 0) return;
+        Console.WriteLine($"{arrValPos[i, 0]} встречается {arrValPos[i, 1]} раз.");
     }
 }
 

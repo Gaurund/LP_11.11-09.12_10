@@ -22,7 +22,7 @@ int InputNumber(string msg)
     }
     while (arg < 0)
     {
-        arg = InputNumber("Введите аргумент N: ");
+        arg = InputNumber("Введите число N: ");
         if (arg < 0) ErrorNegativeNumber();
     }
     return (num, arg);

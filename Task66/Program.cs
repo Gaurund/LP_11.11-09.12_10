@@ -36,16 +36,16 @@ void ErrorNegativeNumber()
     Console.WriteLine("\nЗначение не может быть меньше единицы. Повторите ввод.\n");
 }
 
-int Sum(int min, int max)
+int RangeSum(int min, int max)
 {
     if (min == max) return max;
-    return Sum(min, max - 1) + max;
+    return RangeSum(min, max - 1) + max;
 }
 
 void Output()
 {
     (int min, int max) num = GetMinMaxNumbers();
-    int sum = Sum(num.min, num.max);
+    int sum = RangeSum(num.min, num.max);
     Console.WriteLine($"Сумма натуральных элементов в промежутке от {num.min} до {num.max} равна {sum}");
 }
 

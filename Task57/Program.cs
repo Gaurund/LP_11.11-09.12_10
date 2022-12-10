@@ -32,6 +32,17 @@ void PrintMatrix(int[,] matrix)
     }
 }
 
+void PrintArray(int[] arr)
+{
+    Console.Write("\n[");
+    for (int i = 0; i < arr.Length; i++)
+    {
+        Console.Write("{0,4}", arr[i]);
+        Console.Write((i < arr.Length - 1) ? "," : string.Empty);
+    }
+    Console.Write(" ]\n");
+}
+
 int[] MatrixToArray(int[,] matrix)
 {
     int[] arr = new int[matrix.Length];
@@ -46,45 +57,44 @@ int[] MatrixToArray(int[,] matrix)
     return arr;
 }
 
-void PrintArray(int[] arr)
+int[,] StoreValueAndPosition(int[] arr)
 {
-    Console.Write("\n[");
-    for (int i = 0; i < arr.Length; i++)
-    {
-        Console.Write("{0,4}", arr[i]);
-        Console.Write((i < arr.Length - 1) ? "," : string.Empty);
-    }
-    Console.Write(" ]\n");
-}
-
-void CountValue(int[] arr)
-{
-    int count = 1;
-    int num = arr[0];
+    int[,] storeValPos = new int[arr.Length, 2];
+    int count = 0;
+    int val = arr[0];
+    int j = 0;
     for (int i = 1; i < arr.Length; i++)
     {
-        if (arr[i] == num) count++;
-        else
+        count++;
+        if (arr[i] != val)
         {
-            PrintMessage(num, count);
-            count = 1;
-            num = arr[i];
+            storeValPos[j, 0] = val;
+            storeValPos[j++, 1] = count;
+            count = 0;
+            val = arr[i];
         }
     }
-    PrintMessage(num, count);
+    storeValPos[j, 0] = arr[arr.Length-1];
+    storeValPos[j, 1] = ++count;
+
+    return storeValPos;
 }
 
-void PrintMessage(int num, int count)
+void PrintResults(int[,] result)
 {
-    Console.WriteLine($"{num} встречается {count} раз.");
+    for (int i = 0; i < result.GetLength(0); i++)
+    {
+        if (result[i, 1] == 0) return;
+        Console.WriteLine($"{result[i, 0]} встречается {result[i, 1]} раз.");
+    }
 }
 
-int[,] array2D = CreateMatrixRndInt(3, 4, 1, 10);
+int[,] array2D = CreateMatrixRndInt(3, 3, 1, 10);
 PrintMatrix(array2D);
 int[] array = MatrixToArray(array2D);
 Array.Sort(array);
 Console.WriteLine();
 PrintArray(array);
 Console.WriteLine();
-CountValue(array);
-
+int[,] resultArray = StoreValueAndPosition(array);
+PrintResults(resultArray);

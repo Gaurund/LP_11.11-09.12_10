@@ -50,7 +50,7 @@ int[,] FillMatrixSpiral(int[,] matrix)
 
     int limitBottomRow = matrix.GetLength(0);
     int limitRightCol = matrix.GetLength(1);
-    int limitTopRow = 0;
+    // int limitTopRow = 0;
     int limitLeftCol = 0;
 
     while (count < matrix.Length)
@@ -63,8 +63,7 @@ int[,] FillMatrixSpiral(int[,] matrix)
                  && matrix[row + 1, col] == 0) row++;
         else if (col - 1 >= limitLeftCol
                  && matrix[row, col - 1] == 0) col--;
-        else if (row - 1 >= limitTopRow
-                 && matrix[row - 1, col] == 0) row--;
+        else  row--; //if (row - 1 >= limitTopRow && matrix[row - 1, col] == 0)
     }
     return matrix;
 }
